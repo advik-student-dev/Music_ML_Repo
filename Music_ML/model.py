@@ -18,8 +18,8 @@ from sklearn import tree
 import sys
 
 # File Imports
-import unpacker
-import csv_import
+from unpacker import unpacker_of_test_and_train_data
+from csv_import import reader_and_divider
 
 # Creates Decision tree model
 model = DecisionTreeClassifier()
@@ -44,10 +44,10 @@ def modeller():
     # It is generally the most commonly used pandas object.
 
     # Places the return values of reader_and_divider (in tuple) in X and y
-    X, y = csv_import.reader_and_divider()
+    X, y = reader_and_divider()
 
     # Unpacking the training and testing data randomly
-    X_train, X_test, y_train, y_test = unpacker.unpacker_of_test_and_train_data(X, y)
+    X_train, X_test, y_train, y_test = unpacker_of_test_and_train_data(X, y)
 
     # Takes in the training data as arguments
     # 2 in supervised learning and 1 in unsupervised learning
@@ -120,7 +120,7 @@ def model_loader(without_genres, genres):
     model = joblib.load('music-recommender.joblib')
 
     # Unpacking the training and testing data randomly
-    X_train, X_test, y_train, y_test = unpacker.unpacker_of_test_and_train_data(without_genres, genres)
+    X_train, X_test, y_train, y_test = unpacker_of_test_and_train_data(without_genres, genres)
     predictions = model.predict(X_test)
     score = accuracy_score(y_test, predictions)
     print(predictions)
