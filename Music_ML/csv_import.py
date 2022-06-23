@@ -1,10 +1,9 @@
 # Imports
-import pandas as pd
-
+from pandas import read_csv
 
 def reader_and_divider():
     # music_data is a data frame with the values of the given file
-    music_data = pd.read_csv('/Users/adviksharma/Programming/MLinPycharm/Music_ML/music.csv')
+    music_data = read_csv('/Users/adviksharma/Programming/MLinPycharm/Music_ML/music.csv')
 
     # X is the data frame without the column genre
     X_return = music_data.drop(columns=['genre'])
